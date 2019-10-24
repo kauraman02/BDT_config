@@ -2,7 +2,7 @@
 
 import os
 
-configDir = os.path.expandvars("${CMSSW_BASE}/src/PlotsConfigurations/Configurations/WH3l/Full2016_nanoAODv4/")
+configDir = os.path.expandvars("${CMSSW_BASE}/src/PlotsConfigurations/Configurations/WH3l/Full2016_nanoAODv4_BDT/")
 
 tagName = ''
 
@@ -16,7 +16,7 @@ variablesFile = os.path.join(configDir,'variables.py')
 cutsFile = os.path.join(configDir,'cuts.py' )
 
 # file with list of samples
-samplesFile = os.path.join(configDir,'samples.py' )
+samplesFile = os.path.join(configDir,'samples_BDT.py' )
 
 # file with list of samples
 plotFile = os.path.join(configDir,'plot.py')

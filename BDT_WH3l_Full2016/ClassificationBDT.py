@@ -15,7 +15,7 @@ def runJob():
             '!V:!Silent:Color:DrawProgressBar:Transformations=D,G:AnalysisType=Classification')
 
     dataloader = TMVA.DataLoader('dataset')
-    for br in config.mvaVariables:
+   for br in config.mvaVariables:
         dataloader.AddVariable(br)
 
     for sampleName, sample in config.samples.items():
@@ -31,15 +31,14 @@ def runJob():
         else:
             dataloader.AddBackgroundTree(sample['tree'], 1.0)
         # output_dim += 1
-    dataloader.PrepareTrainingAndTestTree(TCut(config.cut),'nTrain_Signal=1000:nTrain_Background=7000:SplitMode=Random:NormMode=NumEvents:!V')#SSSF
-    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDT", "!H:!V:NTrees=25:MinNodeSize=2.5%:MaxDepth=3:BoostType=AdaBoost:AdaBoostBeta=0.5:UseBaggedBoost:BaggedSampleFraction=0.5:SeparationType=GiniIndex:nCuts=5:NegWeightTreatment=IgnoreNegWeightsInTraining" )#SSSF
+    dataloader.PrepareTrainingAndTestTree(TCut(config.cut),'SplitMode=Random:NormMode=NumEvents:!V')
 
-    # config.selectedModel(config.modelName, input_dim, output_dim)
-    # factory.BookMethod(dataloader, TMVA.Types.kPyKeras, "PyKeras", config.tmvaKerasMethodDetail)
-
-    # Book methods
-    # factory.BookMethod(dataloader, TMVA.Types.kFisher, 'Fisher',
-            # '!H:!V:Fisher:VarTransform=D,G')
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=2" );
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4D3",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=3" );
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4C3", "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=300:MaxDepth=2" );
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4SK01",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.01:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=2" );
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4F07"    ,   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.7:nCuts=500:MaxDepth=2" );
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4SK01F07",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.01:UseBaggedBoost:GradBaggingFraction=0.7:nCuts=500:MaxDepth=2" );
 
     # Run training, test and evaluation
     factory.TrainAllMethods()

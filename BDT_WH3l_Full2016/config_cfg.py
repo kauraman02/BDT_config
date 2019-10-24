@@ -24,7 +24,7 @@ for f in [samplesFile, structureFile, cutsFile]:
 # Reduce sample files for fast dev
 if isDEV:
     for sampleName, sample in samples.items():
-        if sampleName not in ['WZ','WW','ZZ','VVV','Vg','WH_hww','WH_htt']:
+        if sampleName not in ['WZ','WW','ZZ','VVV','Vg','WH_hww','WH_htt','DY','top']:
             samples.pop(sampleName)
             continue
 
@@ -39,29 +39,24 @@ with open("./preselections.py") as handle:
     exec handle
 cut="(({0}) && ({1}))".format(supercut,preselections['ALL'])
 mvaVariables = [
-   'WH3l_dphilllmet',###
-   'WH3l_drOSll[0]',#
-   'WH3l_drOSll[1]',#
+   'WH3l_dphilllmet',
+   'WH3l_drOSll[0]',
+   'WH3l_drOSll[1]',
    'WH3l_ZVeto',
-   'WH3l_mOSll[0]',#
-   'WH3l_mOSll[1]',#
-   'WH3l_ptlll',#####
+   'WH3l_mOSll[0]',
+   'WH3l_mOSll[1]',
+   'WH3l_ptlll',
    'WH3l_mtlmet[0]',
    'WH3l_mtlmet[1]',
    'WH3l_ptOSll[0]',
    'WH3l_ptOSll[1]',
-   'WH3l_dphilmet[0]',###
-   'WH3l_dphilmet[1]',###
-   'WH3l_nbjet',
+   'WH3l_dphilmet[0]',
+   'WH3l_dphilmet[1]',
    'WH3l_ptWWW',
    'WH3l_mtWWW',
    'WH3l_mlll',
-   'Jet_pt[0]',
-   'MET_pt',
+   'PuppiMET_pt',
    'Alt$(CleanJet_pt[0],0)',
-   'Alt$(CleanJet_pt[1],0)',
-   'Alt$(CleanJet_pt[2],0)',
-   'Alt$(CleanJet_pt[3],0)',
    'Alt$(Lepton_pt[0],0)',
    'Alt$(Lepton_pt[1],0)',
    'Alt$(Lepton_pt[2],0)'
