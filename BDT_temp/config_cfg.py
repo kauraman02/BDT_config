@@ -22,21 +22,20 @@ for f in [samplesFile, structureFile, cutsFile]:
 
 
 # Reduce sample files for fast dev
-if isDEV:
-    for sampleName, sample in samples.items():
-        if sampleName not in ['WZ','WW','ZZ','VVV','Vg','WH_hww','WH_htt','DY','top']:
-            samples.pop(sampleName)
-            continue
+for sampleName, sample in samples.items():
+    if sampleName not in ['WZ','WW','ZZ','VVV','Vg','WH_hww','WH_htt','DY','top']:
+        samples.pop(sampleName)
+        continue
 
+    if isDEV:
         if len(sample['name']) > 2:
             sample['name'] = sample['name'][0:1]
-            if 'weights' in sample.keys():
-                sample['weights'] = sample['weights'] [0:1]
-
 
 # Define data to be loaded
 with open("./preselections.py") as handle:
     exec handle
+
+# cut="(({0}) && ({1}))".format(supercut,preselections['ALL'])
 cut="(({0})".format(preselections['ALL'])
 mvaVariables = [
    'WH3l_dphilllmet',
