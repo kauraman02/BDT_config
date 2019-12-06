@@ -30,6 +30,8 @@ for sampleName, sample in samples.items():
     if isDEV:
         if len(sample['name']) > 2:
             sample['name'] = sample['name'][0:1]
+    else :
+        sample['name'] = sample['name']
 
 # Define data to be loaded
 with open("./preselections.py") as handle:
