@@ -18,3 +18,5 @@ cutsFile = os.path.join(configDir,'cuts.py' )
 # file with list of samples
 samplesFile = os.path.join(configDir,'samples.py' )
 
+# structure file for datacard
+structureFile = os.path.join(configDir,'structure.py')
