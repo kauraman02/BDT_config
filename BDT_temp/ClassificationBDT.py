@@ -15,7 +15,7 @@ def runJob():
     factory = TMVA.Factory('TMVAClassification', output,
             '!V:!Silent:Color:DrawProgressBar:Transformations=D,G:AnalysisType=Classification')
 
-   for br in config.mvaVariables:
+    for br in config.mvaVariables:
         dataloader.AddVariable(br)
 
     for sampleName, sample in config.samples.items():

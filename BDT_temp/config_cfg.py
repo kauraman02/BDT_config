@@ -36,7 +36,7 @@ with open("./preselections.py") as handle:
     exec handle
 
 # cut="(({0}) && ({1}))".format(supercut,preselections['ALL'])
-cut="(({0})".format(preselections['ALL'])
+cut="(({0}))".format(preselections['ALL'])
 mvaVariables = [
    'WH3l_dphilllmet',
    'WH3l_drOSll[0]',
