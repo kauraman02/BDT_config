@@ -14,3 +14,6 @@ cutsFile = os.path.join(configDir,'cuts_BDTTrain.py' )
 
 # file with list of samples
 samplesFile = os.path.join(configDir,'samples_BDTTrain.py' )
+
+# structure file for datacard
+structureFile = os.path.join(configDir,'structure.py')
